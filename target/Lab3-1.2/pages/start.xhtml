@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Start page</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/start-fav.ico"/>
+    <h:outputStylesheet  name="css/startpage-styles.css"/>
+    <h:outputScript name="js/startpage-scripts.js"/>
+</h:head>
+
+<h:body onload="showTimeAndDate()">
+    <div id="page-container">
+        <div id="header">
+            <div id="author-info">
+                <div class="author-name">Соловьев Петр Викторович</div>
+                <div class="author-group">группа: P3211</div>
+                <div class="author-variant">вариант: 31010</div>
+            </div>
+        </div>
+
+        <div id="page-container-spacer"></div>
+
+        <div id="start-container">
+            <div id="start-clock"></div>
+            <div id="start-container-spacer"></div>
+            <p:button value="На основную страницу" outcome="toMainPage" styleClass="ui-button-raised ui-button-secondary"/>
+        </div>
+    </div>
+</h:body>
+
+</html>

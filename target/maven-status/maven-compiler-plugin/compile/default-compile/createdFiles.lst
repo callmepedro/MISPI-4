@@ -1,0 +1,11 @@
+JMX/PointsStatMBean.class
+Utils/DatabaseManager.class
+JMX/JmxNotificationListener.class
+Beans/HitsData.class
+JMX/AvgIntervalStatMBean.class
+JMX/PointsStat.class
+Entity/Hit.class
+Utils/XValueValidator.class
+JMX/JmxListener.class
+JMX/AvgIntervalStat.class
+Beans/HitsData$YPair.class

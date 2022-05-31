@@ -1,0 +1,58 @@
+:root {
+    --jsf-button-outlined-color: #607D8B
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#author-info, #start-container {
+    border: 1px solid var(--jsf-button-outlined-color);
+    border-radius: 4px;
+    padding: 15px;
+}
+
+#author-info, #start-clock {
+    color: var(--jsf-button-outlined-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#author-info {
+    margin-top: 15px;
+}
+
+.author-name {
+    font-size: 1.4em;
+}
+.author-group {
+    margin-top: 6px;
+}
+.author-variant, .author-group {
+    display: flex;
+    justify-content: center;
+}
+
+#page-container-spacer {
+    height: 20px;
+}
+
+#start-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#start-container-spacer {
+    height: 25px;
+}
+
+#start-clock {
+    display: flex;
+    justify-content: center;
+    font-size: 1.4em;
+}
+
+.ui-button-outlined {
+
+}

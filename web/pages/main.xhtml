@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: callmepedro
+  Date: 27.10.2021
+  Time: 2:02
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Main page</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/main-fav.ico"/>
+    <h:outputStylesheet name="css/mainpage-styles.css"/>
+    <h:outputScript name="js/mainpage-scripts.js"/>
+</h:head>
+
+<h:body>
+    <div id="home-button-bar">
+        <p:button value="На стартовую страницу" outcome="toStartPage"
+                  styleClass="ui-button-raised ui-button-secondary"/>
+    </div>
+
+    <div id="container">
+        <div id="leftbar">
+            <div class="dec-bar">
+            </div>
+            <table class="dec-table">
+                <tr/>
+            </table>
+
+            <div id="left-container">
+                <h:form id="main-form">
+                    <div id="input-bar">
+                        <div id="x-values-bar">
+                            <h:outputLabel class="x-label">Значение X</h:outputLabel>
+                            <h:panelGrid columns="1">
+                                <p:inputText id="x-value" value="#{hitsData.x}" size="14" required="true" maxlength="10">
+                                    <f:validator validatorId="xValidator"/>
+                                </p:inputText>
+                            </h:panelGrid>
+                        </div>
+
+                        <div id="y-values-bar">
+                            <h:outputLabel class="y-label">Значение Y</h:outputLabel>
+                            <h:panelGrid columns="8">
+                                <h:outputLabel for="y_val-3" value="#{hitsData.YVal1}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState1}" id="y_val-3"/>
+
+                                <h:outputLabel for="y_val-2" value="#{hitsData.YVal2}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState2}" id="y_val-2"/>
+
+                                <h:outputLabel for="y_val-1" value="#{hitsData.YVal3}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState3}" id="y_val-1"/>
+
+                                <h:outputLabel for="y_val0" value="#{hitsData.YVal4}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState4}" id="y_val0"/>
+
+                                <h:outputLabel for="y_val1" value="#{hitsData.YVal5}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState5}" id="y_val1"/>
+
+                                <h:outputLabel for="y_val2" value="#{hitsData.YVal6}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState6}" id="y_val2"/>
+
+                                <h:outputLabel for="y_val3" value="#{hitsData.YVal7}" converter="javax.faces.Integer"/>
+                                <h:selectBooleanCheckbox value="#{hitsData.YState7}" id="y_val3"/>
+                            </h:panelGrid>
+                        </div>
+
+                        <div id="r-values-bar">
+                            <h:outputLabel class="r-label">Значение R</h:outputLabel>
+                            <h:panelGrid columns="1">
+                                <p:inputText id="r-value" value="#{hitsData.r}" size="14" readonly="#{facesContext.renderResponse}"/>
+                                <p:slider for="r-value" minValue="2" maxValue="5" step="0.25" range="max"/>
+                            </h:panelGrid>
+                        </div>
+
+                        <div id="button-bar">
+                            <p:commandButton type="submit" id="submit-button" value="submit" action="#{hitsData.addHit()}"
+                                             styleClass="ui-button-outlined ui-button-secondary" update="msg-for-x">
+                                <p:ajax update="result-table"/>
+                            </p:commandButton>
+
+                            <p:commandButton ajax="false" id="clear-button" value="clear" action="#{hitsData.clear()}"
+                                             styleClass="ui-button-outlined ui-button-secondary">
+                            </p:commandButton>
+                        </div>
+                        <div id="message-container">
+                            <h:message id="msg-for-x" for="x-value"/>
+                        </div>
+                    </div>
+                </h:form>
+
+                <h:form id="svg-points-form" action="">
+                    <div id="graph">
+                        <div class="interactive-element">
+                            <ui:include src="graph/svg-marking.html"/>
+                        </div>
+                    </div>
+                    <h:inputText id="svg-x-value" value="#{hitsData.svgX}" style="display: none"/>
+                    <h:inputText id="svg-y-value" value="#{hitsData.svgY}" style="display: none"/>
+                    <h:inputText id="svg-r-value" value="#{hitsData.svgR}" style="display: none"/>
+                    <p:commandButton type="submit" id="hidden-button" action="#{hitsData.svgAddHit()}" style="display: none">
+                        <p:ajax update="result-table"/>
+                    </p:commandButton>
+                </h:form>
+            </div>
+        </div>
+
+        <div id="spacer"></div>
+
+        <div id="rightbar">
+            <div class="dec-bar"></div>
+
+            <div class="outer-scroll-container">
+                <div class="inner-scroll-container">
+                    <h:dataTable id="result-table" value="#{hitsData.hitsList}" var="hits">
+                        <h:column>
+                            <f:facet name="header">X</f:facet>
+                            <h:outputText value="#{hits.x}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Y</f:facet>
+                            <h:outputText value="#{hits.y}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">R</f:facet>
+                            <h:outputText value="#{hits.r}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Текущее время</f:facet>
+                            <h:outputText value="#{hits.curTime}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Время исполнения (мс)</f:facet>
+                            <h:outputText value="#{hits.execTime}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Результат</f:facet>
+                            <h:outputText value="#{hits.result}"/>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</h:body>
+
+</html>
