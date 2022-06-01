@@ -23,6 +23,7 @@ public class JmxListener implements ServletContextListener {
 
             JmxNotificationListener jmxNotificationListener = new JmxNotificationListener();
             mBeanServer.addNotificationListener(pointsStatObjectName, jmxNotificationListener, null, null);
+            mBeanServer.addNotificationListener(avgIntervalStatObjectName, jmxNotificationListener, null, null);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

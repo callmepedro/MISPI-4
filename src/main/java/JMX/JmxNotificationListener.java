@@ -16,6 +16,6 @@ public class JmxNotificationListener implements NotificationListener {
      */
     @Override
     public void handleNotification(Notification notification, Object handback) {
-        System.out.printf("%s | TimeStamp %d", notification.getMessage(), notification.getTimeStamp());
+        System.out.println(notification.getMessage());
     }
 }

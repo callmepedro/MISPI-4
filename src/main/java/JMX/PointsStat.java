@@ -26,7 +26,7 @@ public class PointsStat extends NotificationBroadcasterSupport implements Points
         pointsCount++;
         if (pointsCount % 15 == 0) {
             sendNotification(new Notification("PointsStat", this, sequenceNumber++,
-                    System.currentTimeMillis(), "The number of points is multiple of 15"));
+                    System.currentTimeMillis(), String.format("The number of points (%d) is multiple of 15", pointsCount)));
         }
     }
 }
